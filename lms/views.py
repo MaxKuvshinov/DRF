@@ -1,8 +1,7 @@
-from django.shortcuts import render
 from lms.models import Course, Lesson
 from lms.serializers import CourseSerializer, LessonSerializer
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import ListAPIView,CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
 
 
 class CourseViewSet(ModelViewSet):
