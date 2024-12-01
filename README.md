@@ -10,7 +10,7 @@
 ### Установка:
 1. Клонируйте репозиторий.
 
- `git@github.com:MaxKuvshinov/Django_Course.git`
+ `git@github.com:MaxKuvshinov/DRF.git`
 
 2. Установите зависимости (Для установки зависимостей используется Poetry).
 
