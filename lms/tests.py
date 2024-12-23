@@ -1,9 +1,9 @@
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from lms.models import Course, Lesson, Subscription
 from users.models import User
-from django.urls import reverse
 
 
 class LessonApiTestCase(APITestCase):
@@ -61,7 +61,7 @@ class LessonApiTestCase(APITestCase):
         url = reverse("lms:lesson-list")
         response = self.client.get(url)
         data = response.json()
-        #print(response.json())
+        # print(response.json())
         result = {
             "count": 1,
             "next": None,
@@ -85,5 +85,9 @@ class LessonApiTestCase(APITestCase):
         url = reverse("lms:subscription")
         course_id = self.course.id
         response = self.client.post(url, {"course_id": course_id})
-        self.assertIn(response.status_code, [status.HTTP_200_OK, status.HTTP_201_CREATED])
-        self.assertTrue(Subscription.objects.filter(user=self.user, course=self.course).exists())
+        self.assertIn(
+            response.status_code, [status.HTTP_200_OK, status.HTTP_201_CREATED]
+        )
+        self.assertTrue(
+            Subscription.objects.filter(user=self.user, course=self.course).exists()
+        )

@@ -1,5 +1,5 @@
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from lms.models import Course, Lesson, Subscription
 from lms.validators import YouTubeValidator
