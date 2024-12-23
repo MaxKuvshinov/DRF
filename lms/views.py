@@ -1,14 +1,16 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, views, status
+from rest_framework import generics, status, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson, Subscription
-from lms.paginators import LessonPaginator, CoursePaginator
-from lms.serializers import (CourseSerializer,
-                             CourseWithLessonsCountSerializer,
-                             LessonSerializer)
+from lms.paginators import CoursePaginator, LessonPaginator
+from lms.serializers import (
+    CourseSerializer,
+    CourseWithLessonsCountSerializer,
+    LessonSerializer,
+)
 from users.permissions import IsModer, IsOwner
 
 
