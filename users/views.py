@@ -3,14 +3,15 @@ from rest_framework import status, viewsets
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course
 from users.models import Payments, User
-from users.serializers import PaymentsSerializer, UserDetailSerializer, UserSerializer
-from rest_framework.response import Response
-
-from users.services import create_price_stripe, create_product_stripe, create_sessions_stripe
+from users.serializers import (PaymentsSerializer, UserDetailSerializer,
+                               UserSerializer)
+from users.services import (create_price_stripe, create_product_stripe,
+                            create_sessions_stripe)
 
 
 class PaymentsViewSet(viewsets.ModelViewSet):
@@ -38,7 +39,9 @@ class PaymentsViewSet(viewsets.ModelViewSet):
         try:
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
-            return Response({"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND
+            )
 
         try:
             product = create_product_stripe(course)
