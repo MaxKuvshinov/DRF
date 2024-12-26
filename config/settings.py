@@ -119,3 +119,5 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+API_KEY_STRIPE = os.getenv(("API_KEY_STRIPE"))
