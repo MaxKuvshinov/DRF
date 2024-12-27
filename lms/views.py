@@ -6,11 +6,9 @@ from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson, Subscription
 from lms.paginators import CoursePaginator, LessonPaginator
-from lms.serializers import (
-    CourseSerializer,
-    CourseWithLessonsCountSerializer,
-    LessonSerializer,
-)
+from lms.serializers import (CourseSerializer,
+                             CourseWithLessonsCountSerializer,
+                             LessonSerializer)
 from users.permissions import IsModer, IsOwner
 
 
