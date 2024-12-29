@@ -15,6 +15,7 @@ class Course(models.Model):
         blank=True,
         help_text="Укажите владельца",
     )
+    last_update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
