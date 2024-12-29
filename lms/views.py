@@ -1,4 +1,7 @@
+from datetime import timedelta
+
 from django.shortcuts import get_object_or_404
+from django.utils.timezone import now
 from rest_framework import generics, status, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -6,14 +9,13 @@ from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course, Lesson, Subscription
 from lms.paginators import CoursePaginator, LessonPaginator
-from lms.serializers import (CourseSerializer,
-                             CourseWithLessonsCountSerializer,
-                             LessonSerializer)
+from lms.serializers import (
+    CourseSerializer,
+    CourseWithLessonsCountSerializer,
+    LessonSerializer,
+)
 from lms.tasks import send_course_update_email
 from users.permissions import IsModer, IsOwner
-
-from datetime import timedelta
-from django.utils.timezone import now
 
 
 class CourseViewSet(ModelViewSet):
