@@ -4,14 +4,15 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
 
 from lms.models import Course
 from users.models import Payments, User
-from users.serializers import (PaymentsSerializer, UserDetailSerializer,
-                               UserSerializer)
-from users.services import (create_price_stripe, create_product_stripe,
-                            create_sessions_stripe)
+from users.serializers import PaymentsSerializer, UserDetailSerializer, UserSerializer
+from users.services import (
+    create_price_stripe,
+    create_product_stripe,
+    create_sessions_stripe,
+)
 
 
 class PaymentsViewSet(viewsets.ModelViewSet):
