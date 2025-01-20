@@ -46,15 +46,28 @@ jobs:
       - name: Start PostgreSQL
         run: docker-compose up -d db
 
+
+
       - name: Run migrations
+        env:
+          SECRET_KEY: "${{ secrets.SECRET_KEY }}"
+          POSTGRES_USER: "${{ secrets.POSTGRES_USER }}"
+          POSTGRES_PASSWORD: "${{ secrets.POSTGRES_PASSWORD }}"
+          POSTGRES_DB: "${{ secrets.POSTGRES_DB }}"
+          POSTGRES_HOST=: db
         run: |
-          export SECRET_KEY="${{ secrets.SECRET_KEY }}"
-          poetry run python manage.py migrate 
-          
+          poetry run python manage.py migrate
+
+
 
       - name: Run tests
+        env:
+          SECRET_KEY: "${{ secrets.SECRET_KEY }}"
+          POSTGRES_USER: "${{ secrets.POSTGRES_USER }}"
+          POSTGRES_PASSWORD: "${{ secrets.POSTGRES_PASSWORD }}"
+          POSTGRES_DB: "${{ secrets.POSTGRES_DB }}"
+          POSTGRES_HOST=: db
         run: |
-          export SECRET_KEY="${{ secrets.SECRET_KEY }}"
           poetry run python manage.py test
           
 
