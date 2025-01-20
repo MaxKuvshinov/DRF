@@ -43,6 +43,9 @@ jobs:
           pip install poetry 
           poetry install
 
+      - name: Start PostgreSQL
+        run: docker-compose up -d db
+
       - name: Run migrations
         run: |
           export SECRET_KEY="${{ secrets.SECRET_KEY }}"
