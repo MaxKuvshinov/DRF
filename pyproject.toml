@@ -27,7 +27,7 @@ eventlet = "^0.38.2"
 redis = "^5.2.1"
 django-celery-beat = "^2.7.0"
 
-package = [
+packages = [
     {include = "DRF"}
 ]
 
