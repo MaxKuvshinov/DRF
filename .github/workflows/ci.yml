@@ -42,38 +42,27 @@ jobs:
           python -m pip install --upgrade pip 
           pip install poetry 
           poetry install
-          
 
-      - name: Create .env file
-        run: |
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "DATABASE_HOST=db" >> .env
-
-      - name: Install Docker Compose
+      - name: Set up PostgreSQL
         run: |
           sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Start Docker Compose
-        run: docker-compose up -d db
+          sudo apt-get install -y postgresql-client
+          sudo service postgresql start
+          sudo -u postgres psql -c "ALTER USER postgres PASSWORD '1104997';"
+          sudo -u postgres psql -c "CREATE DATABASE drf;"
+          sudo -u postgres psql -c "CREATE ROLE runner WITH LOGIN PASSWORD '1104997';"
+          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE drf TO runner;"
+          sudo -u postgres psql -c "GRANT CREATE ON SCHEMA public TO runner;"
+          echo "DATABASE_URL=postgres://runner:1104997@localhost/drf" >> $GITHUB_ENV
 
 
       - name: Run migrations
-        env:
-          SECRET_KEY: "${{ secrets.SECRET_KEY }}"
         run: |
           poetry run python manage.py migrate
 
-
-
       - name: Run tests
-        env:
-          SECRET_KEY: "${{ secrets.SECRET_KEY }}"
         run: |
           poetry run python manage.py test
-          
 
   deploy:
     runs-on: ubuntu-latest
@@ -123,4 +112,3 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             sudo systemctl restart myapp.service
           EOF
-
