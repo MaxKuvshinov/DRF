@@ -28,7 +28,7 @@ redis = "^5.2.1"
 django-celery-beat = "^2.7.0"
 
 package = [
-    {inclede = "DRF"}
+    {include = "DRF"}
 ]
 
 
