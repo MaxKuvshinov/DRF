@@ -12,6 +12,7 @@
 
  `git@github.com:MaxKuvshinov/DRF.git`
 
+
 2. Установите зависимости (Для установки зависимостей используется Poetry).
 
  `poetry install`
