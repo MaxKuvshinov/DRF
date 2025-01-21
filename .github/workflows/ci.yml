@@ -92,7 +92,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no -l ${{ secrets.SSH_USER }} ${{ secrets.SERVER_IP }} "
-            cd /home/drf/DRF
+            cd /home/drf/
             git pull origin main
             poetry install
             poetry run python manage.py migrate
