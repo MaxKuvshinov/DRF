@@ -91,13 +91,9 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no -l ${{ secrets.SSH_USER }} ${{ secrets.SERVER_IP }} << 'EOF'
-          cd /home/drf/
-          git pull origin main
-          poetry install
-          poetry run python manage.py migrate
-          sudo systemctl restart myapp.service
-          EOF
+          sshpass -p "rF?MZVW29vf,Be" ssh -v -o StrictHostKeyChecking=no root@62.113.37.211 "set -x; cd /drf/DRF && git pull && ~/.local/bin/poetry install && sudo systemctl restart nginx"
+
+
 
 
 
