@@ -91,7 +91,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          sshpass -p "rF?MZVW29vf,Be" ssh -v -o StrictHostKeyChecking=no root@62.113.37.211 "set -x; cd root/drf/deploy && git pull && ~/.local/bin/poetry install && sudo systemctl restart nginx"
+          sshpass -p "rF?MZVW29vf,Be" ssh -v -o StrictHostKeyChecking=no root@62.113.37.211 "set -x; cd /root/drf/deploy && git pull && ~/.local/bin/poetry install && sudo systemctl restart nginx"
 
 
 
