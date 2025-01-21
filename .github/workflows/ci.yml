@@ -92,12 +92,16 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no -l ${{ secrets.SSH_USER }} ${{ secrets.SERVER_IP }} << 'EOF'
-          cd /path/to/your/project
+          cd /home/drf/DRF
           git pull origin main
           poetry install
           poetry run python manage.py migrate
           sudo systemctl restart myapp.service
           EOF
+
+
+
+
 
 #      - name: Add server to known_hosts
 #        run: ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
