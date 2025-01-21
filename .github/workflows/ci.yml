@@ -50,12 +50,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y postgresql-client
           sudo service postgresql start
-          sudo -u postgres psql -c "ALTER USER postgres PASSWORD '${{ secrets.POSTGRES_PASSWORD }}';"
-          sudo -u postgres psql -c "CREATE DATABASE ${{ secrets.POSTGRES_DB }};"
-          sudo -u postgres psql -c "CREATE ROLE ${{ secrets.POSTGRES_USER }} WITH LOGIN PASSWORD '${{ secrets.POSTGRES_PASSWORD }}';"
-          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${{ secrets.POSTGRES_DB }} TO ${{ secrets.POSTGRES_USER }};"
-          sudo -u postgres psql -c "GRANT CREATE ON SCHEMA public TO ${{ secrets.POSTGRES_USER }};"
-          echo "DATABASE_URL=postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost/${{ secrets.POSTGRES_DB }}" >> $GITHUB_ENV
+          sudo -u postgres psql -c "ALTER USER postgres PASSWORD '1104997';"
+          sudo -u postgres psql -c "CREATE DATABASE drf;"
+          sudo -u postgres psql -c "CREATE ROLE runner WITH LOGIN PASSWORD '1104997';"
+          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE drf TO runner;"
+          sudo -u postgres psql -c "GRANT CREATE ON SCHEMA public TO runner;"
+          echo "DATABASE_URL=postgres://runner:1104997@localhost/drf" >> $GITHUB_ENV
 
       - name: Run makemigrations
         env:
