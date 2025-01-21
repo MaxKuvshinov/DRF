@@ -13,7 +13,7 @@ jobs:
       - name: Set up python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.12"
 
       - name: Install Poetry
         run: |
@@ -52,7 +52,6 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           poetry run python manage.py test
-
 
   deploy:
     runs-on: ubuntu-latest
