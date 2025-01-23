@@ -73,8 +73,8 @@ class LessonApiTestCase(APITestCase):
                     "description": self.lesson.description,
                     "preview": None,
                     "video_url": self.lesson.video_url,
-                    "course": 3,
-                    "owner": 3,
+                    "course": 1,
+                    "owner": 1,
                 }
             ],
         }
